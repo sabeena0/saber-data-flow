@@ -4,6 +4,12 @@ import SectionHeading from "./SectionHeading";
 
 const projects = [
   {
+    title: "Delivery Agents Performance Dashboard",
+    desc: "Built an interactive Power BI dashboard to analyze delivery agents' performance using metrics such as total deliveries, delivery time, feedback and efficiency. Designed KPI cards, charts, and filters to track performance trends and compare agent productivity.",
+    tech: ["Power BI", "Data Visualization", "KPI Design"],
+    github: "https://github.com/sabeena0",
+  },
+  {
     title: "Air Quality Analysis & Pollution Hotspot Detection",
     desc: "Analyzed Indian government dataset to identify pollution trends and hotspot areas using geo-mapping and visualization tools.",
     tech: ["Python", "Pandas", "Seaborn", "Plotly"],
