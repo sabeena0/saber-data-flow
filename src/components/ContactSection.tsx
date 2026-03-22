@@ -3,18 +3,33 @@ import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Linkedin, Github, Send } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import { toast } from "sonner";
+import emailjs from "@emailjs/browser";
 
 const ContactSection = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [sending, setSending] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
       toast.error("Please fill all fields");
       return;
     }
-    toast.success("Message sent! Thank you for reaching out.");
-    setForm({ name: "", email: "", message: "" });
+    setSending(true);
+    try {
+      await emailjs.send(
+        "service_9lpz7rw",
+        "template_rtxomlf",
+        { from_name: form.name, from_email: form.email, message: form.message },
+        "4pW05zzZ73JHu6iqk"
+      );
+      toast.success("Message sent! Thank you for reaching out.");
+      setForm({ name: "", email: "", message: "" });
+    } catch {
+      toast.error("Failed to send message. Please try again.");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -76,8 +91,8 @@ const ContactSection = () => {
               rows={5}
               className="w-full px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition text-sm resize-none"
             />
-            <button type="submit" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition">
-              Send Message <Send size={16} />
+            <button type="submit" disabled={sending} className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition disabled:opacity-50">
+              {sending ? "Sending..." : "Send Message"} <Send size={16} />
             </button>
           </motion.form>
         </div>
