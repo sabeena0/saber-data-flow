@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Download } from "lucide-react";
-
-const profileImg = "https://i.postimg.cc/3wMzDH6Z/Whats-App-Image-2026-03-22-at-7-23-53-PM.jpg?dl=1";
+import profileImg from "@/assets/profile.jpg";
 
 const HeroSection = () => (
   <section id="home" className="min-h-screen flex items-center section-padding pt-28 relative overflow-hidden">
