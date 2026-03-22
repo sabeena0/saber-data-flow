@@ -91,8 +91,8 @@ const ContactSection = () => {
               rows={5}
               className="w-full px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition text-sm resize-none"
             />
-            <button type="submit" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition">
-              Send Message <Send size={16} />
+            <button type="submit" disabled={sending} className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition disabled:opacity-50">
+              {sending ? "Sending..." : "Send Message"} <Send size={16} />
             </button>
           </motion.form>
         </div>
