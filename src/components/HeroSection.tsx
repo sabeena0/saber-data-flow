@@ -2,8 +2,27 @@ import { motion } from "framer-motion";
 import { ArrowRight, Download } from "lucide-react";
 import profileImg from "@/assets/profile.jpg";
 
-const HeroSection = () =>
-<section id="home" className="min-h-screen flex items-center section-padding pt-28 relative overflow-hidden">
+const HeroSection = () => {
+  const handleDownloadCV = async () => {
+    try {
+      const response = await fetch("/SpecializedCVpes.docx");
+      if (!response.ok) throw new Error("CV file not found");
+
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "Sabeena-Parveen-CV.docx";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Failed to download CV", error);
+    }
+  };
+
+  return <section id="home" className="min-h-screen flex items-center section-padding pt-28 relative overflow-hidden">
     {/* Animated bg elements */}
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-float" />
@@ -26,9 +45,9 @@ const HeroSection = () =>
           <a href="#projects" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition">
             View Projects <ArrowRight size={16} />
           </a>
-          <a href="/SpecializedCVpes.docx" download className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border text-foreground hover:border-primary hover:text-primary transition">
+          <button type="button" onClick={handleDownloadCV} className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border text-foreground hover:border-primary hover:text-primary transition">
             Download CV <Download size={16} />
-          </a>
+          </button>
         </div>
 
         <div className="flex gap-8 mt-10">
@@ -65,6 +84,7 @@ const HeroSection = () =>
       </motion.div>
     </div>
   </section>;
+};
 
 
 export default HeroSection;
