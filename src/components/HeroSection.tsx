@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 import { ArrowRight, Download } from "lucide-react";
 import profileImg from "@/assets/profile.jpg";
 
-const HeroSection = () => (
-  <section id="home" className="min-h-screen flex items-center section-padding pt-28 relative overflow-hidden">
+const HeroSection = () =>
+<section id="home" className="min-h-screen flex items-center section-padding pt-28 relative overflow-hidden">
     {/* Animated bg elements */}
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-float" />
@@ -20,7 +20,7 @@ const HeroSection = () => (
           <span className="gradient-text">Parveen</span>
         </h1>
         <p className="text-lg md:text-xl text-muted-foreground mb-2">Aspiring Data Analyst | Data Science Enthusiast</p>
-        <p className="text-muted-foreground mb-8 max-w-md">"Turning data into meaningful insights"</p>
+        <p className="text-muted-foreground mb-8 max-w-md">"Transforming data into actionable insights to support smarter decisions."</p>
 
         <div className="flex flex-wrap gap-4">
           <a href="#projects" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition">
@@ -48,11 +48,11 @@ const HeroSection = () => (
       </motion.div>
 
       <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.7, delay: 0.2 }}
-        className="flex justify-center"
-      >
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.7, delay: 0.2 }}
+      className="flex justify-center">
+      
         <div className="relative">
           <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/30 neon-border">
             <img src={profileImg} alt="Sabeena Parveen" className="w-full h-full object-cover" />
@@ -64,7 +64,7 @@ const HeroSection = () => (
         </div>
       </motion.div>
     </div>
-  </section>
-);
+  </section>;
+
 
 export default HeroSection;
