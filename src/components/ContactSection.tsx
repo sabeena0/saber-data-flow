@@ -3,18 +3,33 @@ import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Linkedin, Github, Send } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import { toast } from "sonner";
+import emailjs from "@emailjs/browser";
 
 const ContactSection = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [sending, setSending] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
       toast.error("Please fill all fields");
       return;
     }
-    toast.success("Message sent! Thank you for reaching out.");
-    setForm({ name: "", email: "", message: "" });
+    setSending(true);
+    try {
+      await emailjs.send(
+        "service_9lpz7rw",
+        "template_rtxomlf",
+        { from_name: form.name, from_email: form.email, message: form.message },
+        "4pW05zzZ73JHu6iqk"
+      );
+      toast.success("Message sent! Thank you for reaching out.");
+      setForm({ name: "", email: "", message: "" });
+    } catch {
+      toast.error("Failed to send message. Please try again.");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
