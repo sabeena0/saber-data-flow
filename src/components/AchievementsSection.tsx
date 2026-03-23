@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
-import { Trophy, Star, Award } from "lucide-react";
+import { Trophy, Star, Award, ExternalLink } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 
 const achievements = [
-  { icon: Star, title: "5 Star Badge – HackerRank", desc: "C++ Programming", date: "Feb 2026" },
-  { icon: Award, title: "4 Star Badge – HackerRank", desc: "Problem Solving", date: "" },
-  { icon: Trophy, title: "Contest Rating 1,449", desc: "LeetCode", date: "" },
+  { icon: Star, title: "5 Star Badge – HackerRank", desc: "C++ Programming", date: "Feb 2026", link: "https://www.hackerrank.com/profile/parveensabeena56" },
+  { icon: Award, title: "4 Star Badge – HackerRank", desc: "Problem Solving", date: "", link: "https://www.hackerrank.com/profile/parveensabeena56" },
+  { icon: Trophy, title: "Contest Rating 1,449", desc: "LeetCode", date: "", link: "https://leetcode.com/u/Sabeena0_786/" },
 ];
 
 const AchievementsSection = () => (
