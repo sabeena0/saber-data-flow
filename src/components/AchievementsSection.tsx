@@ -27,7 +27,10 @@ const AchievementsSection = () => (
             </div>
             <h3 className="font-semibold text-foreground mb-1">{a.title}</h3>
             <p className="text-sm text-muted-foreground">{a.desc}</p>
-            {a.date && <p className="text-xs text-muted-foreground/70 mt-2">{a.date}</p>}
+            {a.date && <p className="text-xs text-muted-foreground/70 mt-1">{a.date}</p>}
+            <a href={a.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-primary hover:underline mt-3">
+              View Profile <ExternalLink size={12} />
+            </a>
           </motion.div>
         ))}
       </div>
