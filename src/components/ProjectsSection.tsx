@@ -27,6 +27,12 @@ const projects = [
     tech: ["Python", "Scikit-learn", "Matplotlib"],
     github: "https://github.com/sabeena0",
   },
+  {
+    title: "Library Management System",
+    desc: "Developed a desktop-based library management system with a GUI to manage book inventory, issue and return operations, and search functionality for easy management of library data.",
+    tech: ["Java", "Swing", "HashMap", "ArrayList", "OOP"],
+    github: "https://github.com/sabeena0/Library-mangement-system",
+  },
 ];
 
 const ProjectsSection = () => (
