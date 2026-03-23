@@ -1,27 +1,26 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, Download, Linkedin, Github } from "lucide-react";
 import profileImg from "@/assets/profile.jpg";
 
+const downloadFile = async (filePath: string, fileName: string) => {
+  try {
+    const response = await fetch(filePath);
+    if (!response.ok) throw new Error("File not found");
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+  } catch (error) {
+    console.error("Failed to download file", error);
+  }
+};
+
 const HeroSection = () => {
-  const handleDownloadCV = async () => {
-    try {
-      const response = await fetch("/SpecializedCVpes.docx");
-      if (!response.ok) throw new Error("CV file not found");
-
-      const blob = await response.blob();
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = "Sabeena-Parveen-CV.docx";
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error("Failed to download CV", error);
-    }
-  };
-
   return <section id="home" className="min-h-screen flex items-center section-padding pt-28 relative overflow-hidden">
     {/* Animated bg elements */}
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -39,14 +38,27 @@ const HeroSection = () => {
           <span className="gradient-text">Parveen</span>
         </h1>
         <p className="text-lg md:text-xl text-muted-foreground mb-2">Aspiring Data Analyst | Data Science Enthusiast</p>
-        <p className="text-muted-foreground mb-8 max-w-md">"Transforming data into actionable insights to support smarter decisions."</p>
+        <p className="text-muted-foreground mb-4 max-w-md">"Transforming data into actionable insights to support smarter decisions."</p>
+
+        {/* Social Links */}
+        <div className="flex items-center gap-3 mb-8">
+          <a href="https://www.linkedin.com/in/sabeena-parveen/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg border border-border text-muted-foreground hover:text-primary hover:border-primary transition">
+            <Linkedin size={20} />
+          </a>
+          <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg border border-border text-muted-foreground hover:text-primary hover:border-primary transition">
+            <Github size={20} />
+          </a>
+        </div>
 
         <div className="flex flex-wrap gap-4">
           <a href="#projects" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition">
             View Projects <ArrowRight size={16} />
           </a>
-          <button type="button" onClick={handleDownloadCV} className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border text-foreground hover:border-primary hover:text-primary transition">
-            Download CV <Download size={16} />
+          <button type="button" onClick={() => downloadFile("/sabeena_general_CV.pdf", "Sabeena-Parveen-General-CV.pdf")} className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border text-foreground hover:border-primary hover:text-primary transition">
+            General CV <Download size={16} />
+          </button>
+          <button type="button" onClick={() => downloadFile("/SpecializedCVpes.docx", "Sabeena-Parveen-Specialized-CV.docx")} className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border text-foreground hover:border-primary hover:text-primary transition">
+            Specialized CV <Download size={16} />
           </button>
         </div>
 
