@@ -37,29 +37,52 @@ const Navbar = () => {
               {l}
             </button>
           ))}
-          <button
-            type="button"
-            onClick={async () => {
-              try {
-                const response = await fetch("/SpecializedCVpes.docx");
-                if (!response.ok) throw new Error("CV file not found");
-                const blob = await response.blob();
-                const url = URL.createObjectURL(blob);
-                const link = document.createElement("a");
-                link.href = url;
-                link.download = "Sabeena-Parveen-CV.docx";
-                document.body.appendChild(link);
-                link.click();
-                link.remove();
-                URL.revokeObjectURL(url);
-              } catch (error) {
-                console.error("Failed to download CV", error);
-              }
-            }}
-            className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition"
-          >
-            Download CV
-          </button>
+          <div className="relative group">
+            <button
+              type="button"
+              className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition"
+            >
+              Download CV ▾
+            </button>
+            <div className="absolute right-0 mt-1 w-48 rounded-lg border border-border bg-background shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+              <button
+                type="button"
+                onClick={async () => {
+                  const response = await fetch("/sabeena_general_CV.pdf");
+                  const blob = await response.blob();
+                  const url = URL.createObjectURL(blob);
+                  const link = document.createElement("a");
+                  link.href = url;
+                  link.download = "Sabeena-Parveen-General-CV.pdf";
+                  document.body.appendChild(link);
+                  link.click();
+                  link.remove();
+                  URL.revokeObjectURL(url);
+                }}
+                className="w-full text-left px-4 py-2 text-sm text-foreground hover:text-primary hover:bg-muted transition rounded-t-lg"
+              >
+                General CV
+              </button>
+              <button
+                type="button"
+                onClick={async () => {
+                  const response = await fetch("/SpecializedCVpes.docx");
+                  const blob = await response.blob();
+                  const url = URL.createObjectURL(blob);
+                  const link = document.createElement("a");
+                  link.href = url;
+                  link.download = "Sabeena-Parveen-Specialized-CV.docx";
+                  document.body.appendChild(link);
+                  link.click();
+                  link.remove();
+                  URL.revokeObjectURL(url);
+                }}
+                className="w-full text-left px-4 py-2 text-sm text-foreground hover:text-primary hover:bg-muted transition rounded-b-lg"
+              >
+                Specialized CV
+              </button>
+            </div>
+          </div>
         </div>
 
         {/* Mobile toggle */}
