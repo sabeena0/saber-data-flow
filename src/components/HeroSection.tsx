@@ -57,7 +57,7 @@ const HeroSection = () => {
           <button type="button" onClick={() => downloadFile("/sabeena_general_CV.pdf", "Sabeena-Parveen-General-CV.pdf")} className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border text-foreground hover:border-primary hover:text-primary transition">
             General CV <Download size={16} />
           </button>
-          <button type="button" onClick={() => downloadFile("/SpecializedCVpes.docx", "Sabeena-Parveen-Specialized-CV.docx")} className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border text-foreground hover:border-primary hover:text-primary transition">
+          <button type="button" onClick={() => downloadFile("/sabeena_specialized_CV.pdf", "Sabeena-Parveen-Specialized-CV.pdf")} className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border text-foreground hover:border-primary hover:text-primary transition">
             Specialized CV <Download size={16} />
           </button>
         </div>

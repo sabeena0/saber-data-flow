@@ -66,12 +66,12 @@ const Navbar = () => {
               <button
                 type="button"
                 onClick={async () => {
-                  const response = await fetch("/SpecializedCVpes.docx");
+                  const response = await fetch("/sabeena_specialized_CV.pdf");
                   const blob = await response.blob();
                   const url = URL.createObjectURL(blob);
                   const link = document.createElement("a");
                   link.href = url;
-                  link.download = "Sabeena-Parveen-Specialized-CV.docx";
+                  link.download = "Sabeena-Parveen-Specialized-CV.pdf";
                   document.body.appendChild(link);
                   link.click();
                   link.remove();
